@@ -1,72 +1,273 @@
-<!doctype html>
-<html lang="en">
+!DOCTYPE html>
+<html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My developer page</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Estilos de Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <!-- Estilos de Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brian Mep - Estilo con Preloader y Redes Sociales</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            color: white;
+        }
+        .container {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            padding: 1rem;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        nav.open {
+            display: block;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        nav ul li {
+            padding: 0.5rem 1rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.125rem;
+            font-weight: 600;
+            display: block;
+            padding: 0.5rem 0;
+        }
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        main {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+        p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 36rem;
+        }
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            font-size: 1.125rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .button-primary {
+            background-color: white;
+            color: black;
+        }
+        .button-primary:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .button-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .button-secondary:hover {
+            background-color: white;
+            color: black;
+        }
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 4rem;
+            }
+            p {
+                font-size: 1.5rem;
+            }
+        }
 
-    <!-- Iconos de boxicons -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        /* Estilos del Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #333;
+            border-top: 5px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Estilos de los iconos de redes sociales */
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+        .social-icon {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .social-icon:hover {
+            opacity: 0.8;
+        }
+        .social-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
 </head>
-<script defer type="text/javascript" src="/main.js"></script>
 <body>
-<header class="header">
-    <nav>
-        <div class="logo">
-            <img src="https://cdn.shoplightspeed.com/shops/643429/themes/9311/v/988679/assets/hero-image.jpg?20240809061631" alt="MDN logo" />
-        </div>
-        <a class="nav-link" href="/">Inicio</a>
-        <a class="nav-link" href="/about">About</a>
-        <a class="nav-link" href="/contact">Contact</a>
-        <a class="nav-link" href="/blog">Blog</a>
-        <div class="bx bx-moon" id="darkMode-icon"></div>
-        <!-- Icono de menu -->
-        <div class="bx bx-menu" id="menu-icon"></div>
-    </nav>
-    <div class="social_container">
-        <a href="https://github.com/bbrux" target="_blank" class="social-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M16 22.027v-2.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7a5.44 5.44 0 0 0-1.5-3.75a5.07 5.07 0 0 0-.09-3.77s-1.18-.35-3.91 1.48a13.4 13.4 0 0 0-7 0c-2.73-1.83-3.91-1.48-3.91-1.48A5.07 5.07 0 0 0 5 5.797a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.58v2.87"/><path d="M9 20.027c-3 .973-5.5 0-7-3"/></g></svg>
-        </a>
-        
-        <a href="https://www.instagram.com/brian_mep/" target="_blank" class="social-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
-        <g fill="none" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 16a4 4 0 1 0 0-8a4 4 0 0 0 0 8"/>
-            <path d="M3 16V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5Z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="m17.5 6.51l.01-.011"/>
-        </g>
-        </svg>
-        </a>
+    <div class="preloader">
+        <div class="loader"></div>
     </div>
 
-    <main class="Home_main__zgAJj flex">
-        <div class="layout_container__GzqJ4 flex">
-            <div class="social_container__RpZNm"></div>
-                <div class="layout_child__lTzFq">
-                    <div class="Home_container__CFFUG flex">
-                    <img 
-                    alt="Home page Avatar" 
-                    loading="lazy" 
-                    width="200" 
-                    height="200" 
-                    decoding="async" 
-                    data-nimg="1" 
-                    src="image.png" 
-                    style="color: transparent; border-radius: 50%; object-fit: cover;">
-                    <div class="Home_text__G5Hn3 flex">
-                    <h4 class="Home_title__y5DJb">Welcome To My Web Corner!</h4>
-                    <span class="Home_desc__ZH1b8">My journey in the world of web development began with a curiosity for building interactive and seamless digital experiences.</span>
-                    <span class="Home_alarm__1yKm5">Click to continue</span>
-                    </div>
+    <div class="container">
+        <img src="/backg.png" alt="Brian Mep background" class="background-image">
+        <div class="overlay"></div>
+        <header>
+            <div class="header-content">
+                <div class="logo">BRIAN MEP</div>
+                <div class="social-icons">
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
                 </div>
+                <button class="menu-toggle" aria-label="Abrir menú">☰</button>
             </div>
-        </div>
-    </main>
-</header>
+            <nav>
+                <ul>
+                    <li><a href="#music">MUSIC</a></li>
+                    <li><a href="#tour">TOUR</a></li>
+                    <li><a href="#videos">VIDEOS</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#store">STORE</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>RISE AGAIN</h1>
+            <p>New Single Out Now</p>
+            <div class="buttons">
+                <a href="#listen" class="button button-primary">LISTEN NOW</a>
+                <a href="#watch" class="button button-secondary">WATCH VIDEO</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Funcionalidad del menú
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+            this.textContent = this.textContent === '☰' ? '✕' : '☰';
+            this.setAttribute('aria-label', this.textContent === '☰' ? 'Abrir menú' : 'Cerrar menú');
+        });
+
+        // Funcionalidad del preloader
+        window.addEventListener('load', function() {
+            const preloader = document.querySelector('.preloader');
+            preloader.classList.add('hidden');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+    </script>
 </body>
-</html>
+</html> este era mi index
