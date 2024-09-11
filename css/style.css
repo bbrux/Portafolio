@@ -28,14 +28,32 @@ body, html {
     inset: 0;
     background-color: rgba(0, 0, 0, 0.3);
 }
-
 header {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 100; /* Aumentado */
+    padding: 1rem;
 }
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #FFD700;
+}
+
+
 
 .container {
     max-width: 1200px;
