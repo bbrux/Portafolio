@@ -28,6 +28,7 @@ body, html {
     inset: 0;
     background-color: rgba(0, 0, 0, 0.3);
 }
+
 header {
     position: absolute;
     top: 0;
@@ -83,6 +84,30 @@ nav ul li a:hover {
 
 .social-icons a {
     color: white;
+}
+
+/* Estilo para el botón de hamburguesa (menu-toggle) */
+.menu-toggle {
+    display: none; /* Oculto por defecto */
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Mostrar la hamburguesa solo en pantallas pequeñas */
+@media (max-width: 767px) {
+    .menu-toggle {
+        display: block; /* Mostrar en pantallas pequeñas */
+    }
+
+    nav ul {
+        display: none; /* Ocultar el menú de navegación completo en pantallas pequeñas */
+    }
+
+    nav.open ul {
+        display: block; /* Mostrar el menú de navegación cuando se haga clic en la hamburguesa */
+    }
 }
 
 #menuToggle {
