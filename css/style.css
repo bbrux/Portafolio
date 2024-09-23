@@ -1,3 +1,4 @@
+/* Reset básico y tipografía */
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +10,7 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
+/* Contenedor principal */
 .relative {
     position: relative;
     height: 100vh;
@@ -29,12 +31,13 @@ body, html {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
+/* Estilos para el encabezado */
 header {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100; /* Aumentado */
+    z-index: 100;
     padding: 1rem;
 }
 
@@ -42,6 +45,18 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
 }
 
 nav ul li a {
@@ -54,23 +69,16 @@ nav ul li a:hover {
     color: #FFD700;
 }
 
-
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+/* Botón hamburguesa para pantallas pequeñas */
+.menu-toggle {
+    display: none; /* Oculto por defecto */
+    background: none;
+    border: none;
     color: white;
+    cursor: pointer;
 }
 
+/* Social icons */
 .social-icons {
     display: none;
 }
@@ -80,43 +88,29 @@ nav ul li a:hover {
         display: flex;
         gap: 1rem;
     }
+
+    .menu-toggle {
+        display: none; /* Ocultar el botón hamburguesa en pantallas grandes */
+    }
 }
 
-.social-icons a {
-    color: white;
-}
-
-/* Estilo para el botón de hamburguesa (menu-toggle) */
-.menu-toggle {
-    display: none; /* Oculto por defecto */
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-/* Mostrar la hamburguesa solo en pantallas pequeñas */
+/* Mostrar la hamburguesa y ocultar el menú en pantallas pequeñas */
 @media (max-width: 767px) {
     .menu-toggle {
-        display: block; /* Mostrar en pantallas pequeñas */
+        display: block; /* Mostrar el botón hamburguesa */
     }
 
     nav ul {
-        display: none; /* Ocultar el menú de navegación completo en pantallas pequeñas */
+        display: none; /* Ocultar el menú por defecto en pantallas pequeñas */
     }
 
     nav.open ul {
-        display: block; /* Mostrar el menú de navegación cuando se haga clic en la hamburguesa */
+        display: block; /* Mostrar el menú al hacer clic en la hamburguesa */
+        flex-direction: column; /* Ajustar la disposición del menú */
     }
 }
 
-#menuToggle {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
+/* Estilos del menú desplegable (para pantallas pequeñas) */
 #menu {
     position: absolute;
     top: 100%;
@@ -132,28 +126,6 @@ nav ul li a:hover {
 #menu.open {
     max-height: 300px;
     opacity: 1;
-}
-
-#menu ul {
-    list-style-type: none;
-    padding: 1rem;
-}
-
-#menu button {
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.125rem;
-    font-weight: 600;
-    padding: 0.5rem 0;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-#menu button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
 }
 
 main {
